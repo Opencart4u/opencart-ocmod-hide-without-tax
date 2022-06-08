@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<modification>
+  <id><![CDATA[Hide "without tax" (category, manufacturer, product, search etc)]]></id>
+  <name><![CDATA[Hide "without tax" (category, manufacturer, product, search etc)]]></name>
+  <code>hide_without_tax</code>
+  <version>1.0.0</version>
+  <author>digital4u (Nikolas Branis)</author>
+  <link>https://www.digital4u.gr/</link>
+  <file path="catalog/view/theme/*/template/extension/module/{latest,special}.twig|catalog/view/theme/*/template/product/{category,manufacturer_info,product,special}.twig">
+    <operation>
+      <search><![CDATA[{% if product.tax %} <span class="price-tax">{{ text_tax }} {{ product.tax }}</span> {% endif %} </p>]]></search>
+      <add position="replace"><![CDATA[</p> {# {% if product.tax %} <span class="price-tax">{{ text_tax }} {{ product.tax }}</span> {% endif %} </p> #}]]></add>
+    </operation>
+  </file>
+  <file path="catalog/view/theme/*/template/extension/module/{bestseller,featured}.twig|catalog/view/theme/*/template/product/search.twig">
+    <operation>
+      <search><![CDATA[<span class="price-tax">{{ text_tax }} {{ product.tax }}</span>]]></search>
+      <add position="replace"><![CDATA[{# <span class="price-tax">{{ text_tax }} {{ product.tax }}</span> #}]]></add>
+    </operation>
+  </file>
+  <file path="catalog/view/theme/*/template/product/product.twig">
+    <operation>
+      <search><![CDATA[<li>{{ text_tax }} {{ tax }}</li>]]></search>
+      <add position="replace"><![CDATA[{# <li>{{ text_tax }} {{ tax }}</li> #}]]></add>
+    </operation>
+  </file>
+</modification>
